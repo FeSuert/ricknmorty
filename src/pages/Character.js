@@ -4,6 +4,7 @@ import { useCharacter } from "../hooks/useCharacter"
 
 export default function Character() {
     const {id} = useParams()
+    console.log(id)
     const {error,data,loading} = useCharacter(id)
     console.log(error,data,loading)
 

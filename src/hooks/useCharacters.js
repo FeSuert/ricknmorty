@@ -14,6 +14,7 @@ const GET_CHARACTERS = gql`
 `
 
 export const useCharacters = (page) => {
+    console.log("Here")
     const {error,data,loading} = useQuery(GET_CHARACTERS, {
         variables: {
             page

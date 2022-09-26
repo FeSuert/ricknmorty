@@ -5,8 +5,11 @@ import { useCharacters } from "../hooks/useCharacters";
 
 
 export default function CharactersList() {
-    //const {page} = useParams()
-    const {error, data, loading} = useCharacters(1)
+    let {page} = useParams()
+    page = Number(page)
+    console.log(page)
+    //const [page, setPage] = useState(1)
+    const {error, data, loading} = useCharacters(Number(page))
     console.log(error,data,loading)
     if(loading) return <div></div>
     if(error) return <div>Smth went wrong</div>
@@ -15,22 +18,28 @@ export default function CharactersList() {
             {data.characters.results.map(character => {
                 return (
                 <div>
-                    <Link to={`/${character.id}`}>
+                    <Link to={`/character/${character.id}`}>
                         <img src={character.image} alt="character"/>
                         <h2>{character.name}</h2>
                     </Link>
                 </div>)
             })}
-            {/* <Link to={`/${page}`}>
+            {/* <button onClick={() => setPage(prev => prev+1)}>
+                Next Page
+            </button>
+            <button onClick={() => setPage(prev => prev-1)}>
+                Previous Page
+            </button> */}
+            <Link to={`/${page+1}`}>
                 <button>
                     Next Page
                 </button>
             </Link>
-            <Link to={`/${page}`}>
+            <Link to={`/${page-1}`}>
                 <button>
                     Previous Page
                 </button>
-            </Link>     */}
+            </Link>    
         </div>
     )
 }

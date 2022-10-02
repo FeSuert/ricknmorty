@@ -7,6 +7,9 @@ const GET_CHARACTER = gql`
             id
             name
             image
+            status
+            species
+            gender
         episode  {
         name
         episode

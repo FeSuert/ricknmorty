@@ -8,7 +8,6 @@ export default function CharactersList() {
     let {page} = useParams()
     page = Number(page)
     console.log(page)
-    //const [page, setPage] = useState(1)
     const {error, data, loading} = useCharacters(Number(page))
     console.log(error,data,loading)
     if(loading) return <div></div>
@@ -17,26 +16,20 @@ export default function CharactersList() {
         <div className="flex flex-wrap">
             {data.characters.results.map(character => {
                 return (
-                <div>
+                <div className="border border-gray-400 bg-white bg-opacity-30 lg:border-gray-400">
                     <Link to={`/character/${character.id}`}>
-                        <img src={character.image} alt="character"/>
-                        <h2>{character.name}</h2>
+                        <img className="p-8 rounded-t-lg" src={character.image} alt="character"/>
+                        <h2 className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{character.name}</h2>
                     </Link>
                 </div>)
             })}
-            {/* <button onClick={() => setPage(prev => prev+1)}>
-                Next Page
-            </button>
-            <button onClick={() => setPage(prev => prev-1)}>
-                Previous Page
-            </button> */}
             <Link to={`/${page+1}`}>
-                <button>
+                <button className="mt-32 ml-6 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full">
                     Next Page
                 </button>
             </Link>
             <Link to={`/${page-1}`}>
-                <button>
+                <button className="mt-32 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full">
                     Previous Page
                 </button>
             </Link>    
